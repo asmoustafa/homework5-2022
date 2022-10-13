@@ -1,0 +1,150 @@
+
+
+@keyframes logoshift {
+  from {width: 25px; opacity: 0.0;}
+  to {width: 475px; opacity: 1.0;}
+}
+
+
+#logo{
+  animation-name: logoshift;
+  animation-duration: 5s;
+}
+
+body {
+  font-family: Poppins, Serif;
+  background-image: url("../images/concrete_seamless.png");
+  background-color: #f1f1f1;
+}
+
+header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+.nav_links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-self: center;
+}
+
+.card > header {
+  background-color: #288088;
+  border: 2px solid #45ADAD;
+  padding: 20px 0px;
+  border-radius: 50px 50px 0 0;
+}
+
+/* eqv to :visited, since the only thing that can be visited is links
+for things that apply to the whole page can just do :psuedoclass 
+- set color to blue lol, so it doesnt "change" once visited*/
+a:visited {
+  color: #0000ff;
+}
+
+.pricing {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+/* curves the white border to match
+- flex basis is only for children of flex (flex items), to det size
+ - card is a flex item of pricing  */
+.card {
+  flex-basis: 450px;
+  border-radius: 50px 50px 0 0;
+}
+
+/*  make gallery flex, so images w/n are flex items
+- that way we control the containor and control the mvmt of all the imgs
+-- making this flex wrap allows for the imgs to take up as much space available before lapping to the next line */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* this is for each indiv image
+- making each indiv image flex gives us nothing lol */
+.gallery img {
+  border: 10px solid #50C7C7;
+  margin: 10px;
+  width: 300px;
+} 
+
+/* above was mobile (default) this is for screens > 900px */
+@media only screen and (min-width: 900px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .nav_links {
+    flex-direction: row;
+  }
+
+  .pricing {
+    align-items: center;
+  }
+
+  .card {
+    flex-basis: 275px;
+  }
+
+  body > header {
+    position: sticky;
+    top: 0px;
+  }
+
+}
+
+/* cannot have nested media queries */
+@media all and (prefers-reduced-motion: reduce) {
+  /* can switch up/use ids as many times as we want in css, but can't ascribe it to > 1 elem. in html */
+  #logo {
+    animation-play-state: paused;
+  }
+  
+}
+
+@media print {
+  body {
+    font-family: arial;
+    background-image: none;
+  }
+  nav {
+    width: 100%;
+  }
+
+  .nav_links {
+    justify-content: space-around;
+    flex-direction: row;
+  }
+
+  .pricing {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+  }
+
+  .card {
+    flex-basis: 325px;
+    border: 2px solid #45ADDD;
+  }
+
+  .gallery, #gallery {
+    display: none;
+  }
+
+  /* emojis have unicodes specific w/n css
+  - each of the specs are getting us to the exact spot we need to place the emoji at */
+  .card ul li:nth-child(2)::after {
+    content: "\1F44D";
+  }
+
+}
